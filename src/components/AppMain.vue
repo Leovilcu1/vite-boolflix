@@ -20,8 +20,22 @@ import {store} from "../store"
                     countri = "jp"
                 }
                 const flag = "https://www.countryflagicons.com/FLAT/64/"+countri.toUpperCase()+".png"
-                return flag
+                return flag;
+                
+            },
+            getImg(apiImg){
+                const imagine = "https://image.tmdb.org/t/p/w342" + apiImg
+                return imagine;
+            },
+            numAro(numb){
+
+                const numero = Math.ceil(numb / 2) ;
+                return numero;
+            },
+            starRegular(star){
+                return 5-star
             }
+            
         }
     }
 </script>
@@ -32,21 +46,28 @@ import {store} from "../store"
         <div>
             <h1>MOVIES</h1>
             <ul v-for="i, in this.store.movies">
-                <li >Titolo: {{i.title }}</li> 
-                <li >Titolo Originale: {{ i.original_title }}</li>
+                <img :src=" getImg(i.poster_path)">
+                <li> Titolo: {{i.title }}</li> 
+                <li> Titolo Originale: {{ i.original_title }}</li>
                 <img :src=" getFlag(i.original_language)">
-                <li >Lingua : {{ i.original_language }}</li>
-                <li >Voto: {{ i.vote_average}}</li>
+                <li> Lingua : {{ i.original_language }}</li>
+                <li> Voto: {{numAro(i.vote_average)}} </li>
+                <span  v-for="x in numAro(i.vote_average)"><font-awesome-icon icon="fa-solid fa-star" /> </span>
+                <span  v-for="y in starRegular(numAro(i.vote_average))"><i class="fa-regular fa-star"></i> </span>
             </ul>
         </div>
         <div>
             <h1>SERIE-TV</h1>
             <ul v-for="i, in this.store.serieTV">
-                <li >Titolo: {{i.name }}</li> 
-                <li >Titolo Originale: {{ i.original_name }}</li>
+                <img :src=" getImg(i.poster_path)">
+                <li> Titolo: {{i.name }}</li> 
+                <li> Titolo Originale: {{ i.original_name }}</li>
                 <img :src=" getFlag(i.original_language)">
-                <li >Lingua : {{ i.original_language }}</li>
-                <li >Voto: {{ i.vote_average}}</li>
+                <li> Lingua : {{ i.original_language }}</li>
+                <li> Voto: {{numAro(i.vote_average)}} </li>
+                <span  v-for="x in numAro(i.vote_average)"><font-awesome-icon icon="fa-solid fa-star" /> </span>
+                <span  v-for="y in starRegular(numAro(i.vote_average))"><i class="fa-regular fa-star"></i> </span>
+
             </ul>
         </div>
     </main>
