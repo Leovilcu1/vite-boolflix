@@ -14,11 +14,14 @@
 
    <header>
     <div>
-
- 
-
-        <input type="text" v-model="store.inputText">
-        <button @click="$emit('search')"> Cerca</button>
+        <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid bg-black py-3">
+        <a class="navbar-brand text-danger fs-1">BOOLFLIX</a>
+        <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="store.inputText" @keyup="$emit('search')">
+        </form>
+  </div>
+</nav>
     </div>
    </header>
 
