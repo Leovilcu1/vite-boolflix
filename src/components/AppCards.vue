@@ -1,6 +1,13 @@
 <script>
+import { remove } from '@vue/shared';
+
         export default{
                 namne:"appCards",
+                data(){
+                        return{
+                                hover:false,
+                        }
+                },
                 props:{
                         x : Object,
                 },
@@ -27,23 +34,20 @@
                                 let newVoto = this.x.vote_average;
                                 const vote = Math.ceil( newVoto / 2) ;
                                 return vote;
-                        }
-                        
-                                
-                        
+                        },    
                 }
         }
 </script>
 
 <template>
 
-  <div class="col-sm-3 mb-3 mb-sm-0 ">
-    <div class="card text-bg-darck">
-      <div class="card-body ">
-        <img :src="coverCard" class="card-img">
-                <div class="card-img-overlay text-light ">
-                        <h2 class="card-title">Titolo {{x.name || x.title }}</h2>
-                        <p class="card-text">Titolo Originale {{x.original_name || x.original_title }}.</p>
+  <div class="col-sm-3 mb-3 mb-sm-0 hover-overlay  div" @mouseenter="hover = true" @mouseleave = "hover = false" :class ="{'div-hover' : hover}" >
+    <div class="card text-bg-darck border-0 m-2 leo">
+      <div class="">
+        <img :src="coverCard" class="card-img img-thumbnail cover w-100  p-0 border-0">
+                <div class="card-img-overlay text-light overflow-auto text-center bg-dark bg-opacity-75 " v-if ='hover'>
+                        <p class="card-title">Titolo : {{x.name || x.title }}</p>
+                        <p class="card-text">Titolo Originale : {{x.original_name || x.original_title }}.</p>
 
                         <div> Lingua : {{ x.original_language }} <img :src="flag" ></div>
                         <p>voto: <span v-for="star in vote" class="text-danger" >
@@ -54,22 +58,12 @@
                                 </span>
                         </p>
                         <p>Overview: {{ x.overview }}</p>
-
-                       
                 </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
 </template>
 
 <style lang="scss" scoped>
-
+ 
 </style>

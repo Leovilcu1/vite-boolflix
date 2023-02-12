@@ -8,20 +8,16 @@ import {store} from "../store"
             return{
                 store,
                 axios,
-
             }
         },
-         
         components:{
             AppCards
         },
-       
     }
 </script>
 
 <template  >    
-    
-    <main >
+    <main class="bg-secondary ">
         <div class="container">
             <div class="row" >
             <h1>MOVIES</h1>
@@ -32,13 +28,8 @@ import {store} from "../store"
             <AppCards v-for="i in store.serieTV" :x ="i"/>
         </div>
         </div>
-
-
-        
     </main>
-
 </template>
-
 
 <style lang="scss" scoped>
 
